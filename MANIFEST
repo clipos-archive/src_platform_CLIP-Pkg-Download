@@ -1,0 +1,6 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/CLIP-Pkg-Download.t
+lib/CLIP/Pkg/Download.pm

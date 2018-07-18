@@ -1,0 +1,102 @@
+Revision history for Perl extension CLIP::Pkg::Download.
+
+1.2.6 Mon Oct 22 2013
+	- add a parameter in clippkg_gen_packages_gz, to optionally include SHA checksums
+	in the output.
+
+1.2.5 Mon Oct 21 2013
+	- export clippkg_gen_packages_gz(), formerly (internal) gen_packages_gz().
+
+1.2.4 Fri Oct 18 2013
+	- optimize the package indexation phase of clippkg_gen_mirror(),
+	by reading the previous Packages.gz, and only extracting fields
+	for packages that have actually been added, rather than for all
+	packages present in the mirror (most of which are already 
+	referenced in the old Packages.gz).
+
+1.2.3 Mon Oct 07 2013
+	- create $mirror_base/mirrors/flags/$dist_$part flags
+	when a new packages from $dist:$part are merged into 
+	a mirror.
+
+1.2.2 Mon Oct 07 2013
+	- run clippkg_prune() systematically at the end of 
+	clippkg_update_mirror(), even when no updates have
+	been downloaded.
+
+1.2.1 Fri Jul 19 2013
+	- when the first attempt to download a package fails, 
+	retry with only remote mirrors, excluding local mirrors
+	from e.g. other jails.
+
+1.1.16 Thu Jun 14 2012
+	- add additional param to clippkg_update_mirror() : error
+	string reference.
+
+1.1.15 Thu Mar 22 2012
+	- add Category-fr: to Packagez.gz.
+
+1.1.14 Thu Jul 28 2011
+	- add Homepage: to Packages.gz fields
+
+1.1.12 Mon Jan 17 2011
+	- better fix for write_pending() : do not create empty lines.
+
+1.1.11 Tue Nov 03 2010
+	- fix write_pending() : missing newline at the end of each line.
+
+1.1.10 Tue Apr 06 2010
+	- use clippkg_list_mirror_optional instead of clippkg_list_allowed_optional.
+
+1.1.9  Wed Sep 30 2009
+	- fix code width...
+	- add CLIP-Jails to supported fields.
+
+1.1.8  Thu Sep 10 2009
+	- proper management of the cache 'pending' file when recovering 
+	  from an interruption. Do not remove the pending file altogether
+	  after 'recovering' files, otherwise those recovered files will
+	  be lost if a new interruption occurs.
+
+1.1.7  Mon Aug 31 2009
+	- clean up partial downloads before starting a new download sequence,
+	  and after each download failure.
+
+1.1.6  Fri Aug 21 2009
+	- add Description-fr field to the list of copied fields in 
+	  gen_packages_gz()
+
+1.1.5  Fri Jul 17 2009
+	- adapt to new CLIP::Pkg::Base 1.18 API (dpkg error recovery code,
+	  not used in downloads).
+
+1.1.4  Tue May 28 2009
+	- replace calls to apt-ftparchive with homemade perl code, which
+	  does what's needed at least twice as fast.
+	- fix propagation of new downloaded configurations, to enable 
+	  core update detection.
+
+1.1.3  Tue May 12 2009
+	- support configuration dependencies.
+
+1.1.2  Tue Jan 27 2009
+	- simplify optional packages download, along the same lines used
+	  for installation.
+	- do not rely on a configuration's dependencies to list packages that
+	  need to be checked, used the apt output instead. This should react
+	  better to configurations with incomplete dependencies.
+
+1.1.1  Wed Jan 21 2009
+	- fix writing of pending downloads when downloading optional
+	  packages
+
+1.1.0  Tue Jan 20 2009
+	- support for downloading additionnal optional packages
+
+1.0.0  Wed Oct 22 2008
+	- first stable, documented version.
+
+0.0.1  Mon Aug 18 16:31:22 2008
+	- original version; created by h2xs 1.23 with options
+		-AXc -n CLIP::Pkg::Download
+
